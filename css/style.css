@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: hidden;0
   /* background-color: #789abc; */
 }
 
@@ -101,6 +101,7 @@ a:hover {
   box-sizing: border-box;
   padding: 5px;
   margin: 0px;
+  margin-bottom: 70px;
   /* height: 200px; */
   /* background-color: #123456!important; */
 }
@@ -175,7 +176,7 @@ a:hover {
 
 #suggestionBox {
   padding: 5px 10px;
-  position: relative;
+  /*position: relative;*/
   height: 60px;
   box-sizing: border-box;
   display: inline-flex;
