@@ -1,10 +1,18 @@
-
+var support = 'Riadh';
 const chatBox = document.getElementById('chatbox');
 const typing  = document.getElementById('typing');
 
 const chats = [];
 
 const initialSuggestions = ['Call Customer Care','Purchase Product','Make Enquiry','Report a Case','Send Us an Email'];
+
+var suggest = document.getElementById('suggestionBox');
+
+for (let i = 0; i < initialSuggestions.length; i++) {
+    const sugg = initialSuggestions[i];
+
+    suggest.innerHTML += `<div class="suggestion">${sugg}</div>`;
+}
 
 const suggestionArray = [
     {
@@ -40,6 +48,15 @@ const suggestionArray = [
         showInput: false,
     },
 ];
+
+
+const supportName = document.querySelectorAll('.support-name');
+
+for (let i = 0; i < supportName.length; i++) {
+    const name = supportName[i];
+
+    name.innerHTML = support;
+}
 
 
 const suggestionAction = (reply) => {
