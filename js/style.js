@@ -201,8 +201,16 @@ const addReply = () => {
     });
 
     document.getElementById('back').addEventListener('click',()=>{
-        localStorage.removeItem('data');
-        document.getElementById('intro').style.display = 'block';                    
-        document.getElementById('chat').style.display = 'none';
+        if(confirm('This chat session will be cleared when you go back. Are you sure you want to go back?')){
+            document.getElementById('intro').style.display = 'block';                    
+            document.getElementById('chat').style.display = 'none';
+            setTimeout(() => {
+                localStorage.removeItem('data');
+                currentMsg = 0;
+                chatBox.innerHTML = '';
+                suggestionBox.innerHTML = '';         
+            }, 300);
+        }
+        
     })
 })();
