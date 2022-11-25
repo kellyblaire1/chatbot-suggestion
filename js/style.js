@@ -10,6 +10,9 @@ supportAvatar.innerText = supportAvatarChar;
 
 var currentMsg = 0;
 
+// var user = localStorage.getItem('user')
+// user = JSON.parse(user);
+
 const conversation = [
     {
         message: 'Hi, how are you doing?',
@@ -76,7 +79,9 @@ const addTyping = () => {
             chatBox.appendChild(div);
             scrollToBottom();        
         }, 2000);
-    }    
+    } else {
+        suggestionBox.innerHTML = '';
+    }
     
 }
 
@@ -183,7 +188,7 @@ const addReply = () => {
         var name = data.name;
         var email = data.email;
         
-        localStorage.setItem('data',data);
+        localStorage.setItem('user',data);
         btn.setAttribute('disabled',true);
         btn.innerHTML = 'Starting chat...';
         
@@ -205,7 +210,7 @@ const addReply = () => {
             document.getElementById('intro').style.display = 'block';                    
             document.getElementById('chat').style.display = 'none';
             setTimeout(() => {
-                localStorage.removeItem('data');
+                localStorage.removeItem('user');
                 currentMsg = 0;
                 chatBox.innerHTML = '';
                 suggestionBox.innerHTML = '';         

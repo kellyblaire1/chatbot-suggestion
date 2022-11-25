@@ -41,7 +41,7 @@ a:hover {
 }
 
 #chat {
-  height: 100vh;
+  height: 100%;
   position: relative;
   /* background-color: #597998; */
   background-color: #789abc!important;
