@@ -97,7 +97,7 @@ a:hover {
 #chatbox {
   position: relative;
   overflow: auto;
-  height: calc(100vh - (70px + 60px + 14px));
+  height: calc(100vh - (70px + 60px + 30px));
   box-sizing: border-box;
   padding: 5px;
   margin: 0px;
