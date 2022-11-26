@@ -47,7 +47,7 @@ const setAvatarBackgroundColor = () => {
         color += letters[Math.floor(Math.random() * 16)];
     }
 
-    console.log('color',color)
+    // console.log('color',color)
     supportAvatar.style.backgroundColor = color;
     // supportAvatar.style.display = 'none';
 }
@@ -96,7 +96,7 @@ const hideTyping = () => {
 }
 
 const suggest = () => {
-    console.log('cm',currentMsg)
+    // console.log('cm',currentMsg)
     var suggestion = conversation[currentMsg].suggestion;
 
     suggestionBox.innerHTML = '';
@@ -135,6 +135,7 @@ const activateResponse = () => {
             scrollToBottom();
             if(chatBox.appendChild(response)) {
                 scrollToBottom();
+                suggestionBox.innerHTML = '';
                 addReply();
             }
         });
@@ -169,7 +170,7 @@ const addReply = () => {
         hideTyping();
         currentMsg++;
         addMessage();
-        console.log(currentMsg)
+        // console.log(currentMsg)
         scrollToBottom();
         suggestionBox.innerHTML = '';
     }, 3000);
