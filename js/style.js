@@ -16,7 +16,7 @@ var currentMsg = 0;
 const conversation = [
     {
         message: 'Hi, how are you doing?',
-        suggestion: ['Hello!','Hi!','Hey!','What\'s up?','Hi there!'],
+        suggestion: ['Hello! &#128075;','Hi! &#128075;','Hey! &#128075;','What\'s up? &#128077;','Hi there! &#128075;'],
         reply: 'I\'m very happy to talk to you',
     },
     {
