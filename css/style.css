@@ -182,7 +182,7 @@ a:hover {
   /* justify-content: center; */
   align-items: center;
   margin-bottom: 30px;
-  background: #0b1b2a!important;
+  background: #000000!important;
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -216,7 +216,7 @@ a:hover {
     background-color: yellowgreen;
 }
 
-#online {
+#status {
     font-size: 12px!important;
     font-weight: 500;
 }

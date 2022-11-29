@@ -4,6 +4,9 @@ const chatBox = document.getElementById('chatbox');
 const typings  = document.getElementsByClassName('typing');
 const suggestionBox = document.getElementById('suggestionBox');
 const supportAvatar = document.getElementById('support-avatar');
+const status = document.getElementById('status');
+
+const loader = '<div class="text-center d-flex justify-content-center align-content-center w-100"><img src="./img/timer.gif" class="img-fluid" width="50" alt="Loading..."></div>';
 
 
 supportAvatar.innerText = supportAvatarChar;
@@ -47,9 +50,7 @@ const setAvatarBackgroundColor = () => {
         color += letters[Math.floor(Math.random() * 16)];
     }
 
-    // console.log('color',color)
     supportAvatar.style.backgroundColor = color;
-    // supportAvatar.style.display = 'none';
 }
 
 
@@ -60,6 +61,8 @@ const addTyping = () => {
     div.setAttribute('class','talk-bubble support-chat typing');
     div.style.width = `26%`;
     div.innerHTML = `Typing.`;
+
+    suggestionBox.innerHTML = loader;
 
     var addDots = setInterval(() => {
         if(dotsCount < maxDots){
@@ -72,10 +75,12 @@ const addTyping = () => {
             addDots;
         }
 
-    }, 2000);
+    }, 500);
 
     if(currentMsg < conversation.length ) {
         setTimeout(() => {
+            status.innerHTML = '<i>Typing...</i>';
+            clearInterval(addDots)
             chatBox.appendChild(div);
             scrollToBottom();        
         }, 2000);
@@ -86,17 +91,16 @@ const addTyping = () => {
 }
 
 const hideTyping = () => {
+    
+    status.innerHTML = 'Online';
     for (let i = 0; i < typings.length; i++) {
         const typing = typings[i];
         
         typing.remove();
-        // setTimeout(() => {
-        // }, 3000);
     }
 }
 
 const suggest = () => {
-    // console.log('cm',currentMsg)
     var suggestion = conversation[currentMsg].suggestion;
 
     suggestionBox.innerHTML = '';
@@ -135,7 +139,8 @@ const activateResponse = () => {
             scrollToBottom();
             if(chatBox.appendChild(response)) {
                 scrollToBottom();
-                suggestionBox.innerHTML = '';
+                status.innerHTML = 'Online';
+                suggestionBox.innerHTML = loader;
                 addReply();
             }
         });
@@ -154,7 +159,7 @@ const addMessage = () => {
         hideTyping();   
         suggest();
         activateResponse();
-        scrollToBottom();
+        scrollToBottom();        
     }, 3000);
 }
 
@@ -170,28 +175,37 @@ const addReply = () => {
         hideTyping();
         currentMsg++;
         addMessage();
-        // console.log(currentMsg)
         scrollToBottom();
-        suggestionBox.innerHTML = '';
+        suggestionBox.innerHTML = loader;
     }, 3000);
 }
 
 
 
 (function(){
+    const startBtn = document.getElementById('startbtn');
+    document.getElementById('username').addEventListener('input',(event)=>{
+        var name = event.target.value;
+
+        if(name.length >= 3){
+            startBtn.removeAttribute('disabled');
+        } else {
+            startBtn.setAttribute('disabled',true);
+        }
+    })
 
     document.getElementById('startform').addEventListener('submit',(event)=>{
         event.preventDefault();
         // var data = this;
-        var btn = document.getElementById('startbtn');
+        // var btn = document.getElementById('startbtn');
         var data = Object.fromEntries(new FormData(event.target));
 
         var name = data.name;
         var email = data.email;
         
         localStorage.setItem('user',data);
-        btn.setAttribute('disabled',true);
-        btn.innerHTML = 'Starting chat...';
+        startBtn.setAttribute('disabled',true);
+        startBtn.innerHTML = 'Starting chat...';
         
         setTimeout(() => {
             document.getElementById('intro').style.display = 'none';                    
@@ -200,8 +214,8 @@ const addReply = () => {
             setAvatarBackgroundColor();
             addMessage();
 
-            document.getElementById('startbtn').innerHTML = 'Start Chat';
-            btn.removeAttribute('disabled');
+            startBtn.innerHTML = 'Start Chat';
+            startBtn.removeAttribute('disabled');
         }, 1000);
         
     });
@@ -214,7 +228,7 @@ const addReply = () => {
                 localStorage.removeItem('user');
                 currentMsg = 0;
                 chatBox.innerHTML = '';
-                suggestionBox.innerHTML = '';         
+                suggestionBox.innerHTML = loader;         
             }, 300);
         }
         
