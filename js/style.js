@@ -9,7 +9,7 @@ const status = document.getElementById('status');
 const loader = '<div class="text-center d-flex justify-content-center align-content-center w-100"><img src="./img/timer.gif" class="img-fluid" width="50" alt="Loading..."></div>';
 
 
-supportAvatar.innerText = supportAvatarChar;
+// supportAvatar.innerText = supportAvatarChar;
 
 var currentMsg = 0;
 
@@ -184,10 +184,10 @@ const addReply = () => {
 
 (function(){
     const startBtn = document.getElementById('startbtn');
-    document.getElementById('username').addEventListener('input',(event)=>{
-        var name = event.target.value;
+    document.getElementById('useremail').addEventListener('input',(event)=>{
+        var email = event.target.value;
 
-        if(name.length >= 3){
+        if(email.length >= 3){
             startBtn.removeAttribute('disabled');
         } else {
             startBtn.setAttribute('disabled',true);

@@ -82,6 +82,12 @@ a:hover {
   overflow: visible;
   background: #abcabc;
 }
+#chathead .avatar img {
+  object-fit: contain;  
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+}
 
 #chathead .avatar::after {
     content: '';
